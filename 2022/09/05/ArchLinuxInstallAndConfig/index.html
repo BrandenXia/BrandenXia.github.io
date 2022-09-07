@@ -24,7 +24,7 @@
 <meta property="og:description" content="ArchLinuxInstallation Download the ArchLinux ISO file and use Rufus to write it to a USB drive.  Go to BIOS setting and change the boot sequence.  Boot the live environment.  Connect to the internet u">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-05T12:36:14.000Z">
-<meta property="article:modified_time" content="2022-09-07T22:08:40.588Z">
+<meta property="article:modified_time" content="2022-09-07T22:21:21.676Z">
 <meta property="article:author" content="Branden Xia">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="DIY">
@@ -330,16 +330,17 @@
 
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">brandenxia<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ mkinitcpio -P<br>$ passwd<br>$ useradd -G wheel -s /usr/bin/fish brandenxia<br>$ passwd brandenxia<br>$ visudo<br>$ systemctl <span class="hljs-built_in">enable</span> NetworkManager<br>$ <span class="hljs-built_in">exit</span><br>$ umount /mnt/boot<br>$ umount /mnt<br>$ shutdown -h now<br></code></pre></td></tr></table></figure>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ mkinitcpio -P<br>$ passwd<br>$ useradd -G wheel -s /usr/bin/fish brandenxia<br>$ passwd brandenxia<br>$ visudo<br>$ systemctl <span class="hljs-built_in">enable</span> NetworkManager<br>$ <span class="hljs-built_in">exit</span><br>$ umount /mnt/boot<br>$ umount /mnt<br>$ shutdown -h now<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><ol>
 <li><p>Install the desktop</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">user login: brandenxia<br>password:<br>$ sudo pacman -S xorg<br>$ sudo pacman -S i3-gaps<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>Config the desktop</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># copy config from github</span><br>$ git <span class="hljs-built_in">clone</span> https://github.com/BrandenXia/configs-dotfile ~/.config<br><span class="hljs-comment"># install necessary software</span><br>$ sudo pacman -S rofi ranger neofetch i3status alacritty fcitx5 flameshot pasystray nitrogen parcellite firefox<br><span class="hljs-comment"># install font</span><br>$ sudo pacman -S font-roboto-mono<br><span class="hljs-comment"># install aur manager</span><br>$ sudo pacman -S paru<br><span class="hljs-comment"># install i3lock-fancy from aur</span><br>$ paru -S i3lock-fancy<br></code></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># copy config from github</span><br>$ git <span class="hljs-built_in">clone</span> https://github.com/BrandenXia/configs-dotfile ~/.config<br><span class="hljs-comment"># install necessary software</span><br>$ sudo pacman -S rofi ranger neofetch i3status alacritty fcitx5 flameshot pasystray nitrogen parcellite firefox<br><span class="hljs-comment"># install font</span><br>$ sudo pacman -S font-roboto-mono<br><span class="hljs-comment"># install aur manager</span><br>$ sudo pacman -S paru<br><span class="hljs-comment"># install i3lock-fancy from aur</span><br>$ paru -S i3lock-fancy<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>Enter desktop environment</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># start desktop</span><br>$ startx <span class="hljs-string">&quot;/usr/bin/i3&quot;</span><br></code></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># start desktop</span><br>$ startx <span class="hljs-string">&quot;/usr/bin/i3&quot;</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>Finish</p>
 </li>
