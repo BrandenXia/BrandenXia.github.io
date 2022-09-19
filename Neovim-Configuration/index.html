@@ -16,15 +16,15 @@
   <meta name="author" content="Branden Xia">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Neovim">
+    <meta name="description" content="NeovimNeovim is a Vim-fork focused on extensibility and usability. It supported using lua to extend its function. Install Extension Manager Linux &amp; MacOS Installation  12git clone --depth 1 https:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Neovim Configuration">
 <meta property="og:url" content="https://brandenxia.github.io/Neovim-Configuration/index.html">
 <meta property="og:site_name" content="Blog of Branden Xia">
-<meta property="og:description" content="Neovim">
+<meta property="og:description" content="NeovimNeovim is a Vim-fork focused on extensibility and usability. It supported using lua to extend its function. Install Extension Manager Linux &amp; MacOS Installation  12git clone --depth 1 https:">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-17T21:07:46.000Z">
-<meta property="article:modified_time" content="2022-09-18T11:13:22.375Z">
+<meta property="article:modified_time" content="2022-09-19T03:47:13.623Z">
 <meta property="article:author" content="Branden Xia">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="DIY">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6 words
+          5.9k words
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          1 mins
+          49 mins
         
       </span>
     
@@ -275,7 +275,115 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Neovim"><a href="#Neovim" class="headerlink" title="Neovim"></a>Neovim</h1>
+                <h1 id="Neovim"><a href="#Neovim" class="headerlink" title="Neovim"></a>Neovim</h1><p><a target="_blank" rel="noopener" href="https://github.com/neovim/neovim">Neovim</a> is a Vim-fork focused on extensibility and usability.</p>
+<p>It supported using <a target="_blank" rel="noopener" href="https://www.lua.org/">lua</a> to extend its function.</p>
+<h2 id="Install-Extension-Manager"><a href="#Install-Extension-Manager" class="headerlink" title="Install Extension Manager"></a>Install Extension Manager</h2><blockquote>
+<p>Linux &amp; MacOS Installation</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone --depth 1 https://github.com/wbthomason/packer.nvim\<br> ~/.local/share/nvim/site/pack/packer/start/packer.nvim<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Windows Installation</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone https://github.com/wbthomason/packer.nvim ~\AppData\Local\nvim-data\site\pack\packer\start\packer.nvim<br></code></pre></td></tr></table></figure>
+
+<h2 id="Create-files-and-directories"><a href="#Create-files-and-directories" class="headerlink" title="Create files and directories"></a>Create files and directories</h2><p>In order to make the code easy to read and change, we can separate them into different parts.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">.<br>├── init.vim<br>├── lua<br>│   ├── basic.lua<br>│   ├── keybindings.lua<br>│   ├── plugin-config<br>│   │   └── ...<br>│   └── plugins.lua<br>└── plugin<br>    └── packer_compiled.lua<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>init.vim</code> is used to manage all other parts of the configuration</li>
+<li><code>basic.lua</code> is used to config the basic setting ( such as number line )</li>
+<li><code>keybinding.lua</code> is used to config all keybinding</li>
+<li>All files in the<code>plugin-config</code> directory is used to config the plugins</li>
+<li><code>plugins.lua</code> is used to manage all the plugins</li>
+<li><code>packer_compiled.lua</code> is the file that contains auto generated packer.nvim loader code</li>
+</ul>
+<h2 id="Basic-Configuration"><a href="#Basic-Configuration" class="headerlink" title="Basic Configuration"></a>Basic Configuration</h2><p>Edit init.vim</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vimscript">&quot; basic settings<br>lua require(&#x27;basic&#x27;)<br>&quot; keybinding settings<br>lua require(&#x27;keybindings&#x27;)<br>&quot; plugins<br>lua require(&#x27;plugins&#x27;)<br>&quot; plugins settings<br>lua require(&#x27;plugin-config/nvim-tree&#x27;)<br>lua require(&#x27;plugin-config/bufferline&#x27;)<br>lua require(&#x27;plugin-config/lualine&#x27;)<br>&quot; colorscheme<br>colorscheme dracula<br></code></pre></td></tr></table></figure>
+
+<p>Edit basic.lua</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 设置默认编码为utf8</span><br>vim.g.encoding = <span class="hljs-string">&quot;UTF-8&quot;</span><br>vim.o.fileencoding = <span class="hljs-string">&#x27;utf-8&#x27;</span><br><span class="hljs-comment">-- 光标移动时下上方保留8行</span><br>vim.o.scrolloff = <span class="hljs-number">8</span><br>vim.o.sidescrolloff = <span class="hljs-number">8</span><br><span class="hljs-comment">-- 使用相对行号</span><br>vim.wo.number = <span class="hljs-literal">true</span><br>vim.wo.relativenumber = <span class="hljs-literal">true</span><br><span class="hljs-comment">-- 高亮所在行</span><br>vim.wo.cursorline = <span class="hljs-literal">true</span><br><span class="hljs-comment">-- 搜索大小写不敏感，除非包含大写</span><br>vim.o.ignorecase = <span class="hljs-literal">true</span><br>vim.o.smartcase = <span class="hljs-literal">true</span><br><span class="hljs-comment">-- 命令行高为2，提供足够的显示空间</span><br>vim.o.cmdheight = <span class="hljs-number">2</span><br><span class="hljs-comment">-- 鼠标支持</span><br>vim.o.mouse = <span class="hljs-string">&quot;a&quot;</span><br><span class="hljs-comment">-- 不可见字符的显示，这里只把空格显示为一个点</span><br>vim.o.list = <span class="hljs-literal">true</span><br>vim.o.listchars = <span class="hljs-string">&quot;space:·&quot;</span><br><span class="hljs-comment">-- 补全增强</span><br>vim.o.wildmenu = <span class="hljs-literal">true</span><br><span class="hljs-comment">-- always show tabline</span><br>vim.o.showtabline = <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Plugin-Installation"><a href="#Plugin-Installation" class="headerlink" title="Plugin Installation"></a>Plugin Installation</h2><p>Add those plugin config to .&#x2F;lua&#x2F;plugins.lua</p>
+<ul>
+<li><p>Color scheme: <a target="_blank" rel="noopener" href="https://github.com/Mofiqul/dracula.nvim">Dracula</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">use <span class="hljs-string">&#x27;Mofiqul/dracula.nvim&#x27;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>File manager: <a target="_blank" rel="noopener" href="https://github.com/kyazdani42/nvim-tree.lua">Nvim tree</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">use &#123;<br>	<span class="hljs-string">&#x27;kyazdani42/nvim-tree.lua&#x27;</span>,<br>	requires = <span class="hljs-string">&#x27;kyazdani42/nvim-web-devicons&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Edit <code>./lua/plugin-config/nvim-tree.lua</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">require</span><span class="hljs-string">&#x27;nvim-tree&#x27;</span>.setup &#123;<br>  	<span class="hljs-comment">-- set auto close</span><br>    auto_close = <span class="hljs-literal">true</span>,<br>  	<span class="hljs-comment">-- disable git status</span><br>    git = &#123;<br>        enable = <span class="hljs-literal">false</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Tab page integration: <a target="_blank" rel="noopener" href="https://github.com/akinsho/bufferline.nvim">Bufferline</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">use &#123;<br>	<span class="hljs-string">&#x27;akinsho/bufferline.nvim&#x27;</span>,<br>	requires = <span class="hljs-string">&#x27;kyazdani42/nvim-web-devicons&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Edit <code>./lua/plugin-config/nvim-tree.lua</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- open color display</span><br>vim.opt.termguicolors = <span class="hljs-literal">true</span><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;bufferline&quot;</span>).setup &#123;<br>    options = &#123;<br>        <span class="hljs-comment">-- use lsp of nvim</span><br>        diagnostics = <span class="hljs-string">&quot;nvim_lsp&quot;</span>,<br>        <span class="hljs-comment">-- give a space for nvim-tree</span><br>        offsets = &#123;&#123;<br>            filetype = <span class="hljs-string">&quot;NvimTree&quot;</span>,<br>            text = <span class="hljs-string">&quot;File Explorer&quot;</span>,<br>            highlight = <span class="hljs-string">&quot;Directory&quot;</span>,<br>            text_align = <span class="hljs-string">&quot;left&quot;</span><br>        &#125;&#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Status line: <a target="_blank" rel="noopener" href="https://github.com/nvim-lualine/lualine.nvim">Lualine</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">use &#123;<br> <span class="hljs-string">&#x27;nvim-lualine/lualine.nvim&#x27;</span>,<br> requires = &#123; <span class="hljs-string">&#x27;kyazdani42/nvim-web-devicons&#x27;</span>, opt = <span class="hljs-literal">true</span> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Edit <code>./lua/plugin-config/lualine.lua</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lualine&#x27;</span>).setup()<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Startup page: <a target="_blank" rel="noopener" href="https://github.com/goolord/alpha-nvim">Alpha-nvim</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua">use &#123;<br>	<span class="hljs-string">&#x27;goolord/alpha-nvim&#x27;</span>,<br>	<span class="hljs-built_in">config</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>		<span class="hljs-built_in">require</span><span class="hljs-string">&#x27;alpha&#x27;</span>.setup(<span class="hljs-built_in">require</span><span class="hljs-string">&#x27;alpha.themes.startify&#x27;</span>.<span class="hljs-built_in">config</span>)<br>	<span class="hljs-keyword">end</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Float terminal: <a target="_blank" rel="noopener" href="https://github.com/voldikss/vim-floaterm">Vim-floaterm</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">use <span class="hljs-string">&#x27;voldikss/vim-floaterm&#x27;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Search plugin: <a target="_blank" rel="noopener" href="https://github.com/nvim-telescope/telescope.nvim">Telescope.nvim</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua">use &#123;<br> <span class="hljs-string">&#x27;nvim-telescope/telescope.nvim&#x27;</span>,<br> tag = <span class="hljs-string">&#x27;0.1.0&#x27;</span>,<br> requires = &#123; <span class="hljs-string">&#x27;nvim-lua/plenary.nvim&#x27;</span> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Auto completion: <a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim">Coc.nvim</a></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">use &#123;<br>	<span class="hljs-string">&#x27;neoclide/coc.nvim&#x27;</span>,<br>	branch = <span class="hljs-string">&#x27;release&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Keybindings-config"><a href="#Keybindings-config" class="headerlink" title="Keybindings config"></a>Keybindings config</h2><p>Edit <code>./lua/keybindings.lua</code></p>
+<h3 id="Basic-keybinding"><a href="#Basic-keybinding" class="headerlink" title="Basic keybinding"></a>Basic keybinding</h3><ul>
+<li><p>Set leader key to space</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">vim.g.mapleader = <span class="hljs-string">&quot; &quot;</span><br>vim.g.maplocalleader = <span class="hljs-string">&quot; &quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Alias for commands</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> map = vim.api.nvim_set_keymap<br><span class="hljs-keyword">local</span> opt = &#123;noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Keys for moving to different windows</p>
+<ul>
+<li><code>Alt + h</code> &#x3D; move to left windows</li>
+<li><code>Alt + j</code> &#x3D; move to down windows</li>
+<li><code>Alt + k</code> &#x3D; move to up</li>
+<li><code>Alt + l</code> &#x3D; move to right</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;A-h&gt;&quot;</span>, <span class="hljs-string">&quot;&lt;C-w&gt;h&quot;</span>, opt)<br>map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;A-j&gt;&quot;</span>, <span class="hljs-string">&quot;&lt;C-w&gt;j&quot;</span>, opt)<br>map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;A-k&gt;&quot;</span>, <span class="hljs-string">&quot;&lt;C-w&gt;k&quot;</span>, opt)<br>map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;A-l&gt;&quot;</span>, <span class="hljs-string">&quot;&lt;C-w&gt;l&quot;</span>, opt)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Opening-Nvim-Tree"><a href="#Opening-Nvim-Tree" class="headerlink" title="Opening Nvim Tree"></a>Opening Nvim Tree</h3><p><code>Alt + m</code> &#x3D; open nvim tree</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">map(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;A-m&gt;&#x27;</span>, <span class="hljs-string">&#x27;:NvimTreeToggle&lt;CR&gt;&#x27;</span>, opt)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Moving-to-different-tabs"><a href="#Moving-to-different-tabs" class="headerlink" title="Moving to different tabs"></a>Moving to different tabs</h3><ul>
+<li><code>Ctrl + h</code> &#x3D; move to left tab</li>
+<li><code>Ctrl + l</code> &#x3D; move to right tab</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;C-h&gt;&quot;</span>, <span class="hljs-string">&quot;:BufferLineCyclePrev&lt;CR&gt;&quot;</span>, opt)<br>map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;C-l&gt;&quot;</span>, <span class="hljs-string">&quot;:BufferLineCycleNext&lt;CR&gt;&quot;</span>, opt)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Float-terminal"><a href="#Float-terminal" class="headerlink" title="Float terminal"></a>Float terminal</h3><p><code>Alt + f</code> &#x3D; open float terminal</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">map</span><span class="hljs-params">(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;A-f&gt;&quot;</span>, <span class="hljs-string">&quot;:FloatermNew --autoclose=1 pwsh&lt;CR&gt;&quot;</span>, opt)</span></span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Telescope"><a href="#Telescope" class="headerlink" title="Telescope"></a>Telescope</h3><ul>
+<li><code>&lt;Leader&gt; + f + f</code> &#x3D; search for files</li>
+<li><code>&lt;Leader&gt; + f + b</code> &#x3D; search for tabs</li>
+<li><code>&lt;Leader&gt; + f + h</code> &#x3D; search for commands</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua">map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;leader&gt;ff&quot;</span>, <span class="hljs-string">&quot;:Telescope find_files&lt;CR&gt;&quot;</span>, opt)<br>map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;leader&gt;fb&quot;</span>, <span class="hljs-string">&quot;:Telescope buffers&lt;CR&gt;&quot;</span>, opt)<br>map(<span class="hljs-string">&quot;n&quot;</span>, <span class="hljs-string">&quot;&lt;leader&gt;fh&quot;</span>, <span class="hljs-string">&quot;:Telescope help_tags&lt;CR&gt;&quot;</span>, opt)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Coc-nvim"><a href="#Coc-nvim" class="headerlink" title="Coc.nvim"></a>Coc.nvim</h3><ul>
+<li><code>Tab</code> &#x3D; move to next auto completion result</li>
+<li><code>Shift + Tab</code> &#x3D; move to previous auto completion result</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t</span><span class="hljs-params">(str)</span></span><br>    <span class="hljs-keyword">return</span> vim.api.nvim_replace_termcodes(str, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>)<br><span class="hljs-keyword">end</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_G.smart_tab</span><span class="hljs-params">()</span></span><br>    <span class="hljs-keyword">return</span> vim.fn.pumvisible() == <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> t<span class="hljs-string">&#x27;&lt;C-N&gt;&#x27;</span> <span class="hljs-keyword">or</span> t<span class="hljs-string">&#x27;&lt;Tab&gt;&#x27;</span><br><span class="hljs-keyword">end</span><br>map(<span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;&lt;Tab&gt;&#x27;</span>, <span class="hljs-string">&#x27;v:lua.smart_tab()&#x27;</span>, &#123;expr = <span class="hljs-literal">true</span>, noremap = <span class="hljs-literal">true</span>&#125;)<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_G.smart_stab</span><span class="hljs-params">()</span></span><br>    <span class="hljs-keyword">return</span> vim.fn.pumvisible() == <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> t<span class="hljs-string">&#x27;&lt;C-P&gt;&#x27;</span> <span class="hljs-keyword">or</span> t<span class="hljs-string">&#x27;&lt;S-Tab&gt;&#x27;</span><br><span class="hljs-keyword">end</span><br>map(<span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;&lt;S-Tab&gt;&#x27;</span>, <span class="hljs-string">&#x27;v:lua.smart_stab()&#x27;</span>, &#123;expr = <span class="hljs-literal">true</span>, noremap = <span class="hljs-literal">true</span>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h1 id="Finish"><a href="#Finish" class="headerlink" title="Finish"></a>Finish</h1><p>Run <code>:PackerSync</code> and then use nvimin your work.</p>
+<p>You can also add custom programming language support by installing plugin of Coc.nvim. (Install by <code>CocInstall PluginName</code> command)</p>
+
                 
               </div>
             
