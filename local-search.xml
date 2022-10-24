@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Python-Tutorial</title>
+    <link href="/Python-Tutorial/"/>
+    <url>/Python-Tutorial/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Python-Tutorial"><a href="#Python-Tutorial" class="headerlink" title="Python Tutorial"></a>Python Tutorial</h1><p>This is a Python tutorial that helps beginners quickly getting start.</p><p>[TOC]</p><h2 id="1-Installation"><a href="#1-Installation" class="headerlink" title="1. Installation"></a>1. Installation</h2><p>Go to the <a href="https://www.python.org/downloads/">official website of Python</a> and download the release according to your operating system.</p><blockquote><p>Windows</p></blockquote><p>If your computer is 64-bit (normally), download <code>Windows installer (64-bit) </code> version and run it. Else, download <code>Windows installer (32-bit)</code> version and then run it.</p><blockquote><p>MacOS</p></blockquote><p>Download <code>macOS 64-bit universal2 installer</code> and run it.</p><blockquote><p>Linux</p></blockquote><p>Use your linux distribution’s default package manager, here are some common ones:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install python3<br></code></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo dnf install python3<br></code></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo pacman -S install python3<br></code></pre></td></tr></table></figure><h3 id="Check-if-installation-is-success"><a href="#Check-if-installation-is-success" class="headerlink" title="Check if installation is success"></a>Check if installation is success</h3><p>Open terminal (In Windows, use <code>win+r</code> and enter powershell, in MacOS, just search terminal in launchpad, in Linux, use different action according to your desktop evironment or windows manager) and enter <code>python</code> or <code>python3</code>. If installation is successful, this command won’t return an error.</p><p><img src="/Python-Tutorial/installation_success.png"></p><h2 id="2-Getting-start"><a href="#2-Getting-start" class="headerlink" title="2. Getting start"></a>2. Getting start</h2><h3 id="Trying-to-make-an-output"><a href="#Trying-to-make-an-output" class="headerlink" title="Trying to make an output"></a>Trying to make an output</h3><p>You can create a Python file in any folder you want and call it any name you want. Just make sure it end with <code>.py</code> so that your system will recognize it as a Python file.</p><p>Then, open it with any text editor you want.</p><p>In this example, I create a file called <code>test.py</code> on the desktop.</p><p>Write the following statement into this file:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>)<br></code></pre></td></tr></table></figure><p>And then, open the terminal and go to the folder you create the file. (You can go to any folder using <code>cd any_directory</code>. For exmaple, to go to desktop, just use <code>cd Desktop</code>).st</p><p>You can execute a Python file using <code>python filename.py</code>. In this example, I run the following command:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python test.py<br></code></pre></td></tr></table></figure><p>You will find it output <code>Hello World!</code></p><p>In the statement we wrote into the file <code>test.py</code>, <code>print</code> is a function that takes <code>&quot;Hello World!&quot;</code> in the brackets as an input and output it into your terminal and <code>&quot;Hello World!&quot;</code> is a string that is input into print function.</p><h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p>Variables used to store something when created and can be used anytime until being deleted.</p><p>In Python, you can define a variable using <code>=</code>. For example, you can create a variable called <code>a</code> by the following statement:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure><p>In this statement, you create a variable called <code>a</code> and its value is 1.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>Tutorial</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Neovim Configuration</title>
     <link href="/Neovim-Configuration/"/>
     <url>/Neovim-Configuration/</url>
@@ -13,7 +40,7 @@
     
     <categories>
       
-      <category>Linux</category>
+      <category>Neovim</category>
       
     </categories>
     
