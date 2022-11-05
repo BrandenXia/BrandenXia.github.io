@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://brandenxia.github.io/Python-Tutorial/installation_success.png">
 <meta property="article:published_time" content="2022-10-18T08:04:04.000Z">
-<meta property="article:modified_time" content="2022-10-31T18:19:16.022Z">
+<meta property="article:modified_time" content="2022-11-01T22:09:45.455Z">
 <meta property="article:author" content="Branden Xia">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Tutorial">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k words
+          8.3k words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          61 mins
+          69 mins
         
       </span>
     
@@ -479,6 +479,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;oregon&quot;</span>:<br>  <span class="hljs-keyword">if</span> i == <span class="hljs-string">&quot;e&quot;</span>:<br>    <span class="hljs-keyword">continue</span><br>  <span class="hljs-built_in">print</span>(i)<br><span class="hljs-comment"># output:</span><br><span class="hljs-comment"># o</span><br><span class="hljs-comment"># r</span><br><span class="hljs-comment"># g</span><br><span class="hljs-comment"># o</span><br><span class="hljs-comment"># n</span><br></code></pre></td></tr></table></figure>
 
 <p>In this example, in the third loop, the program didn’t print anything because the their letter of <code>oregon</code> is e. It fits the <code>if</code> condition. The <code>continue</code> sentence run and skips the <code>print(i)</code> part. Therefore, there’s an <code>e</code> missing in the output.</p>
+<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><p>A function in programming is similar to a function in math. It can take inputs (optional), do something, and give outputs. If there is no output specified, the function’s default output is <code>None</code>.</p>
+<p>A function is defined by the word <code>def</code> and you can give the output using <code>return</code></p>
+<p>For example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a</span>):<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;This is a function, your input is &quot;</span> + a + <span class="hljs-string">&quot;.&quot;</span>)<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Input: &quot;</span> + a<br><br>haha = func(<span class="hljs-string">&quot;test&quot;</span>)<br><span class="hljs-built_in">print</span>(haha)<br><span class="hljs-comment"># output:</span><br><span class="hljs-comment"># This is a function, your input is test.</span><br><span class="hljs-comment"># Input: test</span><br></code></pre></td></tr></table></figure>
+
+<p>In this example, there is a function called <code>func</code> defined, which takes an input <code>a</code>. What it does is to put the input <code>a</code> into the sentence <code>&quot;This is a function, your input is</code> <code>a</code> <code>.</code> and print it. Then, it return the value <code>&quot;Input: &quot; + a</code>. The variable <code>haha</code> is created with the value function <code>func</code> return. So, when <code>hahaha</code> was printed, the output was <code>Input: test</code>.</p>
+<p>You can specify the type of input and output when defining a function. For example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>(<span class="hljs-params">a: <span class="hljs-built_in">int</span>, b: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">list</span>:<br>  <span class="hljs-keyword">return</span> [a, a + <span class="hljs-number">1</span>, a - <span class="hljs-number">2</span>, b]<br><span class="hljs-built_in">print</span>(func(<span class="hljs-number">5</span>, <span class="hljs-string">&quot;hahaha&quot;</span>))<br><span class="hljs-comment"># output: [5, 6, 3, &quot;hahaha&quot;]</span><br></code></pre></td></tr></table></figure>
+
+<p>In this example, the input <code>a</code> was specified to <code>int</code> and <code>b</code> was specified to <code>str</code>. And its output was specified to <code>list</code>.</p>
 
                 
               </div>
